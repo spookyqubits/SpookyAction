@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#b41524">
+  <meta name="description" content="A short GHZ classroom challenge: build a three-player answer plan, test four question cards, and compare it with an ideal quantum model.">
+  <title>Ghost Trio · Spooky Action</title>
+  <style>:root{color-scheme:light;--paper:#faf7f1;--white:#fffefa;--ink:#202435;--muted:#535969;--line:#c9cdd5;--red:#b41524;--blue:#154c9c;--purple:#6c2f9e;--green:#1d7a3a;--gold:#8c6000;font-family:"Avenir Next",Avenir,"Segoe UI",system-ui,sans-serif;color:var(--ink);background:var(--paper);font-synthesis:none}
+*{box-sizing:border-box}body{margin:0;padding:0 12px 22px}button,input,select{font:inherit}button,a,input{touch-action:manipulation}button{cursor:pointer}button:disabled{cursor:default;opacity:.5}a{color:var(--blue);text-underline-offset:4px}a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid var(--gold);outline-offset:4px}[hidden]{display:none!important}.skip{position:absolute;top:-80px;left:15px;padding:12px;color:var(--white);background:var(--ink);z-index:10}.skip:focus{top:10px}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.collection-nav{max-width:660px;margin:0 auto;display:flex;justify-content:space-between;gap:18px;align-items:center;font-size:12px}.collection-nav a{min-height:48px;display:inline-flex;align-items:center;font-weight:750;color:var(--red)}.game-shell{max-width:600px;margin:0 auto;background:var(--white);border:2px solid var(--ink);border-radius:23px;overflow:hidden}.game-header{background:var(--red);color:var(--white);padding:19px 21px 17px;border-bottom:4px solid var(--ink)}.eyebrow{font:750 10px/1.6 ui-monospace,monospace;letter-spacing:1.1px;margin:0 0 7px}.game-header h1{font-size:38px;letter-spacing:-1.7px;line-height:1.1;margin:0 0 9px;font-weight:850}.game-header p:not(.eyebrow){font-size:14px;line-height:1.65;margin:0}.header-meta{display:flex;gap:18px;font-size:11px;font-weight:700;margin-top:13px;flex-wrap:wrap}.top-controls{padding:15px 17px 0}.mode-group{display:grid;grid-template-columns:1fr 1fr;gap:8px}.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:11px 15px;border:2px solid var(--line);border-radius:10px;background:var(--white);color:var(--ink);font-size:13px;font-weight:750;line-height:1.5;text-decoration:none}.btn.primary{background:var(--red);border-color:var(--red);color:var(--white);box-shadow:0 3px 0 #7d0e18}.btn.ghost-team{background:var(--purple);border-color:var(--purple);color:var(--white)}.btn[aria-pressed=true]{background:var(--ink);border-color:var(--ink);color:var(--white)}.btn:hover:enabled{border-color:var(--red)}.btn:active:enabled{transform:translateY(1px)}.btn.wide{width:100%}.stage-steps{display:flex;gap:8px;margin:15px 0 0;list-style:none;padding:0;color:var(--muted);font-size:11px}.stage-steps li{flex:1;padding:0 0 8px;border-bottom:3px solid var(--line)}.stage-steps li[aria-current=step]{color:var(--red);border-bottom-color:var(--red);font-weight:800}.screen{padding:20px 17px 22px}h2{font-size:25px;letter-spacing:-.8px;line-height:1.2;margin:0 0 10px}h3{font-size:17px;line-height:1.4;margin:0 0 9px}.lede{font-size:14px;line-height:1.8;color:var(--muted);margin:0 0 17px}.fine{font-size:11px;line-height:1.8;color:var(--muted);margin:10px 0}.rule{font-size:13px;line-height:1.8;background:var(--paper);padding:12px 14px;border-left:4px solid var(--red);border-radius:0 10px 10px 0;margin:0 0 18px}.plan-grid{display:grid;gap:10px;margin:17px 0}.plan-role{border:2px solid var(--role);border-radius:12px;padding:13px;min-width:0;background:var(--white)}.role-heading{display:flex;align-items:center;gap:11px;margin-bottom:10px}.role-heading h3{margin:0;color:var(--role)}.ghost{width:40px;height:46px;display:block;flex-shrink:0;fill:var(--role)}.ghost .eyes{fill:var(--white)}.role-name{font-size:13px;font-weight:800;color:var(--role)}.plan-inputs{display:grid;grid-template-columns:1fr 1fr;gap:9px}.plan-choice{border:2px solid var(--role);border-radius:9px;background:var(--white);color:var(--role);min-height:62px;padding:8px;font-weight:750;font-size:13px;line-height:1.6}.plan-choice b{font-size:22px;margin-left:7px;font-variant-numeric:tabular-nums}.plan-choice[aria-pressed=true]{background:var(--role);color:var(--white)}.coverage{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:12px 0;padding:12px 0;border-block:1px solid var(--line);font-size:12px}.coverage strong{font-size:23px;font-variant-numeric:tabular-nums;color:var(--blue)}details{margin-top:15px}summary{min-height:44px;padding:11px 0;font-size:12px;font-weight:750;cursor:pointer;line-height:1.7}.table-wrap{width:100%;overflow:auto}table{border-collapse:collapse;width:100%;font-size:12px;line-height:1.7;margin:7px 0}th,td{text-align:left;padding:9px 6px;border-bottom:1px solid var(--line);vertical-align:top}th{font-size:11px;color:var(--muted)}.pass{color:var(--green);font-weight:750}.miss{color:var(--red);font-weight:750}.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:18px}.actions>.btn{flex:1}.round-line{display:flex;justify-content:space-between;gap:12px;font-size:11px;font-weight:750;color:var(--muted);margin-bottom:17px}.round-line .model{color:var(--purple)}.handoff{text-align:center;background:var(--paper);padding:27px 16px;border:2px dashed var(--line);border-radius:15px}.handoff .ghost{width:78px;height:87px;margin:0 auto 16px}.handoff h2{color:var(--role)}.handoff .lede{font-size:13px;max-width:340px;margin:0 auto 20px}.private-card{border:3px solid var(--role);border-radius:15px;padding:19px 16px;text-align:center}.private-card .role-heading{justify-content:center}.question-card{display:block;font-size:63px;line-height:1.2;font-weight:850;color:var(--role);padding:13px 0 16px;font-variant-numeric:tabular-nums}.answer-disc{display:grid;place-items:center;width:94px;height:94px;border-radius:50%;background:var(--role);color:var(--white);font-size:48px;font-weight:850;margin:16px auto 20px}.team{display:grid;grid-template-columns:repeat(var(--players),minmax(0,1fr));gap:10px;margin:18px 0}.player{background:var(--paper);border-radius:12px;padding:14px 8px;text-align:center;min-width:0}.player .ghost{margin:0 auto 6px}.player .input{font-size:14px;font-weight:750;margin:7px 0;color:var(--role)}.player .bit{font-size:37px;font-weight:850;color:var(--role);font-variant-numeric:tabular-nums;line-height:1.2}.player .fine{margin-bottom:0}.verdict{padding:15px;border-left:5px solid var(--red);background:var(--paper);border-radius:0 11px 11px 0}.verdict.success{border-color:var(--green)}.verdict h2{font-size:23px;margin:0 0 6px}.verdict p{font-size:13px;line-height:1.8;margin:0}.score-line{font-size:13px;line-height:1.8;margin:15px 0 0}.score-line b{color:var(--blue)}.tally{display:flex;gap:7px;flex-wrap:wrap;list-style:none;margin:14px 0 0;padding:0}.tally li{display:grid;place-items:center;min-height:35px;min-width:35px;background:var(--paper);border-radius:7px;font-size:13px;font-weight:750}.tally li.success{color:var(--green)}.tally li.failure{color:var(--red)}.score-bars{display:grid;gap:17px;margin:21px 0}.score-bar-label{display:flex;justify-content:space-between;gap:12px;font-size:13px;font-weight:750;margin-bottom:7px}.bar-track{height:14px;background:#e8e7e2;border-radius:7px;overflow:hidden}.bar{height:100%;background:var(--blue);border-radius:7px}.bar.quantum{background:var(--purple)}.bound{font-size:12px;line-height:1.8;padding:13px 14px;background:var(--paper);border-radius:10px}.bound b{color:var(--purple)}.lab{margin-top:19px;border-top:1px solid var(--line);padding-top:4px}.batch-result{font-size:13px;line-height:1.8;padding:12px 14px;background:var(--paper);border-radius:10px;margin:12px 0}.quiz{border-top:1px solid var(--line);padding-top:18px;margin-top:22px}.quiz .btn{display:block;width:100%;text-align:left;margin-top:8px;font-size:12px}.quiz .correct{border-color:var(--green);background:#eaf4ec;color:#155b2b}.quiz .wrong{border-color:var(--red);background:#fff0ef}.game-footer{padding:0 17px 12px;border-top:1px solid var(--line)}.game-footer p{font-size:12px;line-height:1.8}.game-footer .fine{font-size:11px}.proof-text{font-size:12px;line-height:1.9}.model-pill{display:inline-block;font:750 10px/1.5 ui-monospace,monospace;letter-spacing:.8px;color:var(--purple);margin-bottom:9px}.notice{font-size:12px;line-height:1.9;margin:14px 0;color:var(--muted)}.resume{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:12px 17px 0;font-size:11px}.resume .btn{font-size:11px;min-height:44px;padding:8px 11px}
+@media(min-width:500px){.plan-grid{grid-template-columns:repeat(var(--players),minmax(0,1fr))}.plan-inputs{grid-template-columns:1fr}.plan-role .role-heading{flex-direction:column;gap:5px}.screen{padding:23px}.top-controls{padding-inline:23px}.game-footer{padding-inline:23px}}
+@media(max-width:360px){body{padding-inline:8px}.game-header{padding-inline:16px}.game-header h1{font-size:35px}.screen,.top-controls,.game-footer{padding-inline:13px}.collection-nav{font-size:11px;gap:10px}.btn{padding-inline:11px}.team{gap:7px}.player .input{font-size:12px}.player .ghost{width:35px;height:41px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to game</a>
+<nav class="collection-nav" aria-label="Collection navigation"><a href="../../">← Spooky Action</a><a href="../ghost-twins/">Ghost Twins →</a></nav>
+<main id="main" class="game-shell">
+  <header class="game-header"><p class="eyebrow">SPOOKYQUBITS · CLASSROOM WOW 01</p><h1>Ghost Trio<span>.</span></h1><p>Three ghosts. Four cards. One stubborn miss.</p><div class="header-meta"><span>Solo or 3 players + Keeper</span><span>4–6 minutes</span></div></header>
+  <div id="app"></div>
+  <footer class="game-footer"><details><summary>Rules, science &amp; classroom guide</summary><div id="science"></div><p><a href="guide.html">Open printable facilitator guide ↗</a></p><p class="fine">This ordinary phone samples a mathematical model. It can see every question; it is not a physical Bell experiment. Players’ private screens use an honor system. No accounts or data uploads.</p></details><p class="fine">Progress stays in this browser when storage is available. <span id="storage-note"></span></p></footer>
+</main>
+<div id="live" class="sr-only" aria-live="polite" role="status"></div>
+<script id="game-config" type="application/json">{"kind": "trio", "otherSlug": "ghost-twins"}</script>
+<script>(function (root, make) {
+  const api = make();
+  if (typeof module === 'object' && module.exports) module.exports = api;
+  else root.SpookyActionCore = api;
+})(typeof globalThis === 'object' ? globalThis : this, function () {
+  'use strict';
+  const P = Math.cos(Math.PI / 8) ** 2;
+  const DEFINITIONS = {
+    trio: {name:'Ghost Trio',slug:'ghost-trio',n:3,labels:['X','Y'],cases:[[0,0,0],[0,1,1],[1,0,1],[1,1,0]],quantum:1},
+    twins: {name:'Ghost Twins',slug:'ghost-twins',n:2,labels:['0','1'],cases:[[0,0],[0,1],[1,0],[1,1]],quantum:P}
+  };
+  const bit = x => x === 0 || x === 1;
+  function definition(kind) {if(!DEFINITIONS[kind])throw Error('Unknown game');return DEFINITIONS[kind];}
+  function checkCase(kind, questions) {
+    const d=definition(kind);
+    if(!Array.isArray(questions)||!d.cases.some(q=>q.length===questions.length&&q.every((x,i)=>x===questions[i])))throw Error('Invalid question card');
+    return d;
+  }
+  function validPlan(kind, plan) {return Array.isArray(plan)&&plan.length===definition(kind).n&&plan.every(row=>Array.isArray(row)&&row.length===2&&row.every(bit));}
+  function target(kind, questions) {checkCase(kind,questions);return kind==='trio'?Number(questions.some(Boolean)):questions[0]&questions[1];}
+  function wins(kind, questions, answers) {
+    const d=checkCase(kind,questions);
+    if(!Array.isArray(answers)||answers.length!==d.n||!answers.every(bit))throw Error('Invalid answers');
+    return answers.reduce((a,b)=>a^b,0)===target(kind,questions);
+  }
+  function answersFor(kind, plan, questions) {checkCase(kind,questions);if(!validPlan(kind,plan))throw Error('Invalid plan');return questions.map((q,i)=>plan[i][q]);}
+  function coverage(kind,plan) {return definition(kind).cases.filter(q=>wins(kind,q,answersFor(kind,plan,q))).length;}
+  function joint(kind,questions) {
+    const d=checkCase(kind,questions),p=d.quantum;
+    return Array.from({length:2**d.n},(_,v)=>{
+      const answers=Array.from({length:d.n},(_,i)=>(v>>(d.n-i-1))&1);
+      return {answers,p:(wins(kind,questions,answers)?p:1-p)/(2**(d.n-1))};
+    });
+  }
+  function random() {
+    if(typeof globalThis.crypto?.getRandomValues==='function'){const a=new Uint32Array(1);globalThis.crypto.getRandomValues(a);return a[0]/4294967296;}
+    return Math.random();
+  }
+  function draw(rng) {const u=rng();if(!Number.isFinite(u)||u<0||u>=1)throw Error('Invalid random draw');return u;}
+  function sample(kind,questions,rng=random) {
+    const u=draw(rng),outcomes=joint(kind,questions);let c=0;
+    for(const outcome of outcomes){c+=outcome.p;if(u<c)return outcome.answers.slice();}
+    return outcomes.at(-1).answers.slice();
+  }
+  function deck(kind,rng=random) {
+    const out=definition(kind).cases.map(q=>q.slice());
+    for(let i=out.length-1;i>0;i--){const j=Math.floor(draw(rng)*(i+1));[out[i],out[j]]=[out[j],out[i]];}
+    return out;
+  }
+  function strategies(kind) {
+    const n=definition(kind).n;
+    return Array.from({length:2**(2*n)},(_,v)=>{
+      const plan=Array.from({length:n},(_,i)=>[(v>>(2*i))&1,(v>>(2*i+1))&1]);
+      return {plan,hits:coverage(kind,plan)};
+    });
+  }
+  function emptyStats() {return {n:0,classical:0,quantum:0,cases:Array.from({length:4},()=>({n:0,classical:0,quantum:0}))};}
+  function benchmark(kind,plan,n=100,rng=random) {
+    const d=definition(kind);if(!validPlan(kind,plan)||!Number.isInteger(n)||n<1||n>10000)throw Error('Invalid batch');
+    const s=emptyStats();
+    for(let i=0;i<n;i++){
+      const index=Math.floor(draw(rng)*4),q=d.cases[index],c=Number(wins(kind,q,answersFor(kind,plan,q))),g=Number(wins(kind,q,sample(kind,q,rng)));
+      s.n++;s.classical+=c;s.quantum+=g;const row=s.cases[index];row.n++;row.classical+=c;row.quantum+=g;
+    }
+    return s;
+  }
+  function merge(a,b) {return {n:a.n+b.n,classical:a.classical+b.classical,quantum:a.quantum+b.quantum,cases:a.cases.map((r,i)=>({n:r.n+b.cases[i].n,classical:r.classical+b.cases[i].classical,quantum:r.quantum+b.cases[i].quantum}))};}
+  return {DEFINITIONS,P,definition,validPlan,target,wins,answersFor,coverage,joint,sample,deck,strategies,emptyStats,benchmark,merge,random};
+});
+</script>
+<script>(() => {
+  'use strict';
+  const C=globalThis.SpookyActionCore,config=JSON.parse(document.getElementById('game-config').textContent),kind=config.kind,d=C.definition(kind);
+  const app=document.getElementById('app'),live=document.getElementById('live'),letters=['A','B','C'],colors=['#154c9c','#6c2f9e','#c0182a'];
+  const storageKey='spooky-action:v1:'+kind,copy=x=>JSON.parse(JSON.stringify(x));
+  const fresh=()=>({version:1,kind,mode:'solo',screen:'plan',phase:'classical',plan:Array.from({length:d.n},(_,i)=>kind==='trio'&&i===2?[1,1]:[0,0]),locked:null,deck:[],index:0,player:0,round:null,records:{classical:[],quantum:[]},batch:C.emptyStats(),quiz:null,panels:[]});
+  let S=fresh(),storageOK=true;
+  function save(){try{localStorage.setItem(storageKey,JSON.stringify(S));}catch(_){storageOK=false;document.getElementById('storage-note').textContent='Saving is off in this browser.';}}
+  function validQuestions(q){try{C.target(kind,q);return true;}catch(_){return false;}}
+  function validRecord(r){try{return r&&validQuestions(r.questions)&&typeof r.win==='boolean'&&C.wins(kind,r.questions,r.answers)===r.win;}catch(_){return false;}}
+  function validStats(b){return b&&['n','classical','quantum'].every(k=>Number.isInteger(b[k])&&b[k]>=0)&&b.n<=10000&&b.classical<=b.n&&b.quantum<=b.n&&Array.isArray(b.cases)&&b.cases.length===4&&b.cases.every(r=>r&&['n','classical','quantum'].every(k=>Number.isInteger(r[k])&&r[k]>=0)&&r.classical<=r.n&&r.quantum<=r.n)&&['n','classical','quantum'].every(k=>b.cases.reduce((n,r)=>n+r[k],0)===b[k]);}
+  function restore(){
+    try{
+      const raw=localStorage.getItem(storageKey);if(!raw||raw.length>16000)return;
+      const p=JSON.parse(raw),screens=['plan','solo-card','handoff','question','private-result','round-result','classical-end','compare'];
+      if(p.version!==1||p.kind!==kind||!['solo','shared'].includes(p.mode)||!screens.includes(p.screen)||!['classical','quantum'].includes(p.phase)||!C.validPlan(kind,p.plan))return;
+      if(!p.records||!['classical','quantum'].every(k=>Array.isArray(p.records[k])&&p.records[k].length<=4&&p.records[k].every(validRecord))||!validStats(p.batch))return;
+      if(p.screen!=='plan'){
+        if(!C.validPlan(kind,p.locked)||!Array.isArray(p.deck)||p.deck.length!==4||!p.deck.every(validQuestions)||new Set(p.deck.map(q=>q.join(''))).size!==4||!Number.isInteger(p.index)||p.index<0||p.index>3||!Number.isInteger(p.player)||p.player<0||p.player>=d.n)return;
+        if(['solo-card','handoff','question','private-result','round-result'].includes(p.screen)){
+          const r=p.round;if(!r||!validQuestions(r.questions)||r.questions.some((v,i)=>v!==p.deck[p.index][i])||!Array.isArray(r.answers)||r.answers.length!==d.n||!r.answers.every(x=>x===0||x===1)||!['submitted','measured'].every(k=>Array.isArray(r[k])&&r[k].length===d.n&&r[k].every(v=>typeof v==='boolean')))return;
+        }
+        if(p.screen==='classical-end'&&p.records.classical.length!==4)return;
+        if(p.screen==='compare'&&(p.records.classical.length!==4||p.records.quantum.length!==4))return;
+        if(p.phase==='quantum'&&p.records.classical.length!==4)return;
+      }
+      S=p;S.quiz=[0,1].includes(S.quiz)?S.quiz:null;S.panels=Array.isArray(S.panels)?S.panels.filter(x=>['cases','proof','lab'].includes(x)):[];
+      // A reload never exposes a private card to whoever picks up the phone.
+      if(S.mode==='shared'&&['question','private-result'].includes(S.screen))S.screen='handoff';
+    }catch(_){storageOK=false;}
+  }
+  const ghost=(i,large=false)=>`<svg class="ghost${large?' large':''}" viewBox="0 0 44 50" aria-hidden="true" style="--role:${colors[i]}"><path d="M5 45V20a17 17 0 0 1 34 0v26l-8-5-8 6-9-6-9 5Z"/><g class="eyes"><ellipse cx="16" cy="21" rx="2.5" ry="3.5"/><ellipse cx="28" cy="21" rx="2.5" ry="3.5"/></g></svg>`;
+  const btn=(action,label,cls='',attrs='')=>`<button type="button" class="btn ${cls}" data-action="${action}" ${attrs}>${label}</button>`;
+  const primary=(action,label,cls='primary')=>btn(action,label,cls,'data-primary');
+  const qText=q=>q.map(x=>d.labels[x]).join(' · '),goal=q=>kind==='trio'?(C.target(kind,q)?'Odd total':'Even total'):(C.target(kind,q)?'Different answers':'Matching answers');
+  const explanation=(q,a)=>kind==='trio'?`The answers add to ${a.reduce((x,y)=>x+y,0)}. This card needs an ${C.target(kind,q)?'odd':'even'} total.`:`${q.every(Boolean)?'Both question cards are 1, so the answers must differ.':'At least one question card is 0, so the answers must match.'}`;
+  const rule=()=>kind==='trio'?'All three get X: your answers must add to an even number. Two get Y: your answers must add to an odd number.':'Your answers must match, except when both question cards are 1. Then your answers must be different.';
+  const opened=id=>S.panels.includes(id)?' open':'';
+  const won=phase=>S.records[phase].filter(r=>r.win).length;
+  function caseTable(plan=S.locked||S.plan,records=null){return `<div class="table-wrap"><table><thead><tr><th scope="col">Questions</th><th scope="col">Need</th><th scope="col">Answers</th><th scope="col">Result</th></tr></thead><tbody>${d.cases.map(q=>{const r=records?.find(r=>r.questions.every((v,i)=>v===q[i])),a=r?r.answers:C.answersFor(kind,plan,q),w=C.wins(kind,q,a);return `<tr><td>${qText(q)}</td><td>${goal(q)}</td><td>${a.join(' · ')}</td><td class="${w?'pass':'miss'}">${w?'✓ Win':'× Miss'}</td></tr>`;}).join('')}</tbody></table></div>`;}
+  function top(){const step=S.screen==='plan'?0:S.screen==='compare'?2:1;return `${S.screen==='plan'?`<div class="top-controls"><div class="mode-group" role="group" aria-label="Play mode">${btn('mode-solo','Solo','',`aria-pressed="${S.mode==='solo'}"`)}${btn('mode-shared','Pass & Play','',`aria-pressed="${S.mode==='shared'}"`)}</div>`:`<div class="top-controls"><div class="resume"><span>${S.mode==='solo'?'Solo · one player':`Pass & Play · ${d.n} players`}</span>${btn('new-plan','Edit plan')}</div>`}<ol class="stage-steps" aria-label="Activity progress">${['1 · Plan','2 · Play','3 · Compare'].map((label,i)=>`<li ${step===i?'aria-current="step"':''}>${label}</li>`).join('')}</ol></div>`;}
+  function planScreen(){return `<section class="screen"><h2>Can your plan cover every card?</h2><p class="lede">Agree on one answer for each question. Tap an answer to flip it. You can talk now; the plan locks when play starts.</p><p class="rule">${rule()}</p><div class="plan-grid" style="--players:${d.n}">${S.plan.map((row,i)=>`<section class="plan-role" style="--role:${colors[i]}" aria-label="Player ${letters[i]} answer plan"><div class="role-heading">${ghost(i)}<h3>Player ${letters[i]}</h3></div><div class="plan-inputs">${row.map((value,q)=>`<button type="button" class="plan-choice" data-action="flip" data-player="${i}" data-question="${q}" aria-pressed="${value===1}" aria-label="Player ${letters[i]} answers ${value} for question ${d.labels[q]}. Flip this answer.">If ${d.labels[q]}, answer <b>${value}</b></button>`).join('')}</div></section>`).join('')}</div><div class="coverage"><span>Your plan covers</span><strong>${C.coverage(kind,S.plan)} / 4 cards</strong></div><details data-panel="cases"${opened('cases')}><summary>Inspect the four question cards</summary>${caseTable(S.plan)}</details><div class="actions">${primary('start','Lock the plan & play →')}</div><p class="fine">${S.mode==='shared'?`Give the phone to one player at a time. Everyone else looks away. The phone is the Keeper; a teacher can help with handoffs.`:'Solo mode shows the whole team. Your decisions are the answers you set in the plan.'} The quick challenge tests each of the four cases once, in a shuffled order.</p></section>`;}
+  function roundLine(){return `<div class="round-line"><span>Card ${S.index+1} of 4 · ${S.phase==='classical'?'Locked plan':'Quantum model'}</span><span class="${S.phase==='quantum'?'model':''}">${S.phase==='quantum'?'IDEAL SIMULATION':'YOUR TEAM'}</span></div>`;}
+  function team(q,answers=null){return `<div class="team" style="--players:${d.n}">${q.map((x,i)=>`<div class="player" style="--role:${colors[i]}">${ghost(i)}<span class="role-name">${letters[i]}</span><div class="input">Question ${d.labels[x]}</div><div class="bit">${answers?answers[i]:'?'}</div><p class="fine">${answers?'Answer':'Not revealed'}</p></div>`).join('')}</div>`;}
+  function playingScreen(){
+    const r=S.round,i=S.player;
+    if(S.screen==='handoff')return `<section class="screen">${roundLine()}<div class="handoff" style="--role:${colors[i]}">${ghost(i,true)}<h2>Pass to ${letters[i]}</h2><p class="lede">Only player ${letters[i]} should look at the next screen. Stay quiet until the team result appears.</p>${primary('show-card',`I'm ${letters[i]} · show my card`)}</div><p class="fine">Other players’ questions and answers stay covered.</p></section>`;
+    if(S.screen==='question')return `<section class="screen">${roundLine()}<div class="private-card" data-private="true" style="--role:${colors[i]}"><div class="role-heading">${ghost(i)}<h2>Player ${letters[i]}</h2></div><p class="fine">Your question</p><span class="question-card" data-local-question="${r.questions[i]}">${d.labels[r.questions[i]]}</span>${S.phase==='classical'?`<p class="lede">Your locked plan says <strong>${r.answers[i]}</strong>.</p>${primary('submit-classical',`Submit ${r.answers[i]} & hide`)}`:`<p class="lede">Measure your ghost in the model. Your own answer is a fair random bit.</p>${primary('measure','Measure my ghost','ghost-team')}`}</div></section>`;
+    if(S.screen==='private-result')return `<section class="screen">${roundLine()}<div class="private-card" data-private="true" style="--role:${colors[i]}"><h2>${letters[i]}’s answer</h2><div class="answer-disc" data-local-answer="${r.answers[i]}">${r.answers[i]}</div><p class="lede">Keep this answer to yourself for now.</p>${primary('hide-answer',i===d.n-1?'Show the team result →':'Hide & pass →','ghost-team')}</div></section>`;
+    if(S.screen==='solo-card')return `<section class="screen">${roundLine()}<h2>${S.phase==='classical'?'One card. Your locked plan.':'Let the ghost team try.'}</h2><p class="lede">${S.phase==='classical'?'The team uses only the answer each player agreed to for their own question.':'The phone samples the ideal joint quantum distribution. Each individual answer remains random.'}</p>${team(r.questions)}<div class="actions">${primary('solo-reveal',S.phase==='classical'?'Reveal the team result →':'Measure the ghost team →',S.phase==='classical'?'primary':'ghost-team')}</div></section>`;
+    const record=S.records[S.phase].at(-1);
+    return `<section class="screen">${roundLine()}<div class="verdict ${record.win?'success':''}"><h2>${record.win?'The team lands it.':'This card slips through.'}</h2><p>${explanation(record.questions,record.answers)}</p></div>${team(record.questions,record.answers)}<p class="score-line">${S.phase==='classical'?'Your plan':'Quantum model'}: <b>${won(S.phase)} / ${S.records[S.phase].length}</b> so far.</p><ul class="tally" aria-label="Completed cards">${S.records[S.phase].map((r,i)=>`<li class="${r.win?'success':'failure'}" aria-label="Card ${i+1}: ${r.win?'win':'miss'}">${r.win?'✓':'×'}</li>`).join('')}</ul><div class="actions">${primary('next',S.index===3?(S.phase==='classical'?'See what your plan found →':'Compare the teams →'):'Next card →')}</div></section>`;
+  }
+  function proof(){const all=C.strategies(kind),best=all.filter(s=>s.hits===3).length;return `<details data-panel="proof"${opened('proof')}><summary>Why can’t a fixed plan win all four?</summary><div class="proof-text"><p>${kind==='trio'?'Across the four cards, each player uses their X answer twice and their Y answer twice. Adding all twelve answers therefore gives an even total. But the targets ask for one even total and three odd totals, which add to an odd number. Both demands cannot hold.':'The first three cards ask for A’s 0 answer, A’s 1 answer, B’s 0 answer, and B’s 1 answer to agree. The last card then asks two of those same answers to differ. At least one card must fail.'}</p><p>The game checks all <b>${all.length}</b> possible fixed plans: ${best} win 3 cards; none win all 4. Shared random choices only mix these plans, so they cannot raise the average above 75% when questions are uniformly selected and players do not communicate.</p></div></details>`;}
+  function classicalEnd(){return `<section class="screen"><h2>${won('classical')===3?'You reached the plan ceiling.':'Your plan found '+won('classical')+' of four.'}</h2><p class="lede">Every possible question card was checked once. Your answers stayed locked throughout.</p>${caseTable(S.locked,S.records.classical)}<p class="bound"><b>Best fixed plan: 3 / 4.</b> You can move the missed card, but you cannot remove every miss.</p>${proof()}<div class="actions">${primary('quantum','Try the ghost team →','ghost-team')}</div><p class="fine">The next phase uses the same four question cards. It samples an ideal quantum model, rather than a new answer plan.</p></section>`;}
+  function bar(label,value,n,quantum=false){return `<div><div class="score-bar-label"><span>${label}</span><span>${value} / ${n}</span></div><div class="bar-track"><div class="bar ${quantum?'quantum':''}" style="width:${n?value/n*100:0}%"></div></div></div>`;}
+  function lab(){const b=S.batch;return `<details class="lab" data-panel="lab"${opened('lab')}><summary>Classroom lab · sample more fresh rounds</summary><p class="fine">Each fresh round independently chooses one of the four question cases with equal probability. The plan stays fixed; the quantum model uses a fresh preparation.</p>${b.n?`<div class="batch-result"><b>${b.n} sampled rounds</b><br>Your plan: ${b.classical} wins (${(b.classical/b.n*100).toFixed(1)}%)<br>Quantum model: ${b.quantum} wins (${(b.quantum/b.n*100).toFixed(1)}%)</div><div class="table-wrap"><table><thead><tr><th>Questions</th><th>Trials</th><th>Plan wins</th><th>Model wins</th></tr></thead><tbody>${b.cases.map((r,i)=>`<tr><td>${qText(d.cases[i])}</td><td>${r.n}</td><td>${r.classical}</td><td>${r.quantum}</td></tr>`).join('')}</tbody></table></div>`:''}<div class="actions">${btn('batch',b.n?'Add 100 fresh rounds':'Sample 100 fresh rounds','',b.n>=10000?'disabled':'')}</div><p class="notice">${kind==='twins'?'The ideal quantum win probability is 85.36% per round, not a promised score. A short sample can tie or lose to the plan.':'The ideal GHZ model wins every allowed question case. A noisy physical experiment need not be perfect.'} A random classical batch can exceed 75% through luck. A score alone is not evidence that phones are entangled.</p></details>`;}
+  function quiz(){const q=kind==='trio'?'Could one player use these correlations to send a chosen message instantly?':'A team wins 8 of 10 random rounds. Does that prove entanglement?';const answers=kind==='trio'?['No. Each local answer is random.','Yes. They choose a question to control the other answers.']:['No. Luck, the rules, and the physical set-up still matter.','Yes. Any score above 75% proves it.'];return `<section class="quiz" aria-labelledby="exit-question"><p class="eyebrow">ONE LAST QUESTION</p><h3 id="exit-question">${q}</h3>${answers.map((answer,i)=>btn('quiz',answer,S.quiz===i?(i===0?'correct':'wrong'):'',`data-answer="${i}" ${S.quiz!==null?'disabled':''}`)).join('')}${S.quiz!==null?`<p class="fine" role="status">${S.quiz===0?'Exactly. ':''}${kind==='trio'?'Only the joint pattern is special. Without comparing results through an ordinary channel, a player sees random bits. The phone’s central simulation is not evidence of nonlocal hardware.':'The 75% classical ceiling is a limit on average success under the stated random-input and no-communication rules. Small samples fluctuate. A physical Bell test needs controlled experimental conditions; this phone is a simulation.'}</p>`:''}</section>`;}
+  function compare(){return `<section class="screen"><span class="model-pill">SAME FOUR QUESTION CARDS</span><h2>${kind==='trio'?'The missing card has a different ending.':'A small difference. A bigger question.'}</h2><p class="lede">${kind==='trio'?'A fixed local plan misses at least one card. The ideal GHZ model can satisfy all four.':'The ideal entangled strategy has a higher average success rate. Four sampled rounds are too few to promise that you will see it.'}</p><div class="score-bars">${bar('Your locked plan',won('classical'),4)}${bar('Quantum model · this run',won('quantum'),4,true)}</div><div class="bound">Uniform random questions, with no communication during a round:<br>Best classical average: <b>75%</b><br>Ideal quantum average: <b>${kind==='trio'?'100%':'85.36%'}</b></div>${proof()}${lab()}${quiz()}<div class="actions">${btn('new-plan','Try another plan')}${btn('quantum','Replay the model','ghost-team')}</div><p class="fine"><a href="../${config.otherSlug}/">${kind==='trio'?'Next: Ghost Twins →':'Revisit Ghost Trio →'}</a> · <a href="guide.html">Teacher guide ↗</a></p></section>`;}
+  function render(focus=null){
+    const panels=[...app.querySelectorAll('details[data-panel][open]')].map(x=>x.dataset.panel);if(app.children.length)S.panels=panels;
+    const content=S.screen==='plan'?planScreen():S.screen==='classical-end'?classicalEnd():S.screen==='compare'?compare():playingScreen();
+    app.innerHTML=top()+content;if(focus)app.querySelector(focus)?.focus({preventScroll:true});
+  }
+  function prepareRound(){const questions=S.deck[S.index].slice(),answers=S.phase==='classical'?C.answersFor(kind,S.locked,questions):C.sample(kind,questions);S.player=0;S.round={questions,answers,submitted:Array(d.n).fill(false),measured:Array(d.n).fill(false)};S.screen=S.mode==='shared'?'handoff':'solo-card';}
+  function start(){S.phase='classical';S.locked=copy(S.plan);S.deck=C.deck(kind);S.index=0;S.records={classical:[],quantum:[]};S.batch=C.emptyStats();S.quiz=null;prepareRound();}
+  function recordRound(){if(S.records[S.phase].length!==S.index)return;const r=S.round;S.records[S.phase].push({questions:r.questions.slice(),answers:r.answers.slice(),win:C.wins(kind,r.questions,r.answers)});S.screen='round-result';}
+  function advancePlayer(){S.round.submitted[S.player]=true;if(S.player===d.n-1)recordRound();else{S.player++;S.screen='handoff';}}
+  function newPlan(){const plan=copy(S.plan),mode=S.mode;S=fresh();S.plan=plan;S.mode=mode;}
+  app.addEventListener('click',event=>{
+    const b=event.target.closest('button[data-action]');if(!b||!app.contains(b)||b.disabled)return;
+    const action=b.dataset.action;let focus='[data-primary]',message='';
+    if(action==='flip'&&S.screen==='plan'){
+      const i=Number(b.dataset.player),q=Number(b.dataset.question);if(!Number.isInteger(i)||i<0||i>=d.n||![0,1].includes(q))return;
+      S.plan[i][q]^=1;focus=`[data-action=flip][data-player="${i}"][data-question="${q}"]`;message=`Your plan covers ${C.coverage(kind,S.plan)} of four cards.`;
+    }else if(action.startsWith('mode-')&&S.screen==='plan'){S.mode=action==='mode-shared'?'shared':'solo';focus=`[data-action="${action}"]`;}
+    else if(action==='start'&&S.screen==='plan'){start();message='The plan is locked. The four-card challenge begins.';}
+    else if(action==='show-card'&&S.screen==='handoff'){S.screen=S.phase==='quantum'&&S.round.measured[S.player]?'private-result':'question';}
+    else if(action==='submit-classical'&&S.screen==='question'&&S.phase==='classical'){advancePlayer();}
+    else if(action==='measure'&&S.screen==='question'&&S.phase==='quantum'){S.round.measured[S.player]=true;S.screen='private-result';}
+    else if(action==='hide-answer'&&S.screen==='private-result'){advancePlayer();}
+    else if(action==='solo-reveal'&&S.screen==='solo-card'){S.round.submitted.fill(true);S.round.measured.fill(S.phase==='quantum');recordRound();}
+    else if(action==='next'&&S.screen==='round-result'){if(S.index<3){S.index++;prepareRound();}else S.screen=S.phase==='classical'?'classical-end':'compare';}
+    else if(action==='quantum'&&['classical-end','compare'].includes(S.screen)&&S.records.classical.length===4){S.phase='quantum';S.records.quantum=[];S.index=0;S.quiz=null;prepareRound();message='The same four question cards; fresh quantum-model answers.';}
+    else if(action==='new-plan'){newPlan();message='The plan is unlocked. You can talk and change answers.';focus='[data-action=start]';}
+    else if(action==='batch'&&S.screen==='compare'&&S.batch.n<10000){S.batch=C.merge(S.batch,C.benchmark(kind,S.locked,100));focus='[data-action=batch]';message=`Classroom lab now has ${S.batch.n} sampled rounds. Plan wins ${S.batch.classical}; model wins ${S.batch.quantum}.`;}
+    else if(action==='quiz'&&S.screen==='compare'&&S.quiz===null){const answer=Number(b.dataset.answer);if(![0,1].includes(answer))return;S.quiz=answer;focus=null;message=answer===0?'Correct. Read the explanation below.':'Read the explanation below and compare it with the game rules.';}
+    else return;
+    render(focus);save();if(message)live.textContent=message;
+  });
+  app.addEventListener('toggle',event=>{if(event.target.matches?.('details[data-panel]')){S.panels=[...app.querySelectorAll('details[data-panel][open]')].map(x=>x.dataset.panel);}},true);
+  document.getElementById('science').innerHTML=`<p>${rule()}</p><p class="fine">A plan assigns one bit to each local question before play. The four-card challenge is an exhaustive audit of that fixed plan, not an independent random Bell experiment. The lab independently samples uniformly random questions on every new round.</p><p class="fine">${kind==='trio'?'GHZ model: (|000⟩ + |111⟩)/√2, with X or Y measurements. A bit of 0 denotes eigenvalue +1; 1 denotes −1. Allowed settings are XXX, XYY, YXY, YYX. All four outcomes with the required parity have probability 1/4.':'CHSH model: the Bell state (|00⟩ + |11⟩)/√2. Alice measures Z or X; Bob measures (Z + X)/√2 or (Z − X)/√2. Answers are eigenvalue bits. Winning answer pairs each have probability cos²(π/8)/2; losing pairs each have probability sin²(π/8)/2.'}</p><p class="fine">The model has a fair marginal for every individual player, whatever the other settings. Correlation does not create a controllable faster-than-light message.</p><p class="fine">Sources: ${kind==='trio'?'<a href="https://arxiv.org/abs/2107.06156" target="_blank" rel="noopener">Girish et al., GHZ game definition and bounds ↗</a>':'<a href="https://quantum.cloud.ibm.com/learning/en/courses/basics-of-quantum-information/entanglement-in-action/chsh-game" target="_blank" rel="noopener">IBM Quantum Learning: CHSH game ↗</a>'}.</p>`;
+  restore();render();if(!storageOK)document.getElementById('storage-note').textContent='Saving is off in this browser.';
+  // A read-only inspection surface supports independent mathematical and UI checks.
+  globalThis.SpookyActionGame={getState:()=>copy(S),config:copy(config)};
+})();
+</script>
+</body>
+</html>

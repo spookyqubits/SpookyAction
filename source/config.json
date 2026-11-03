@@ -1,0 +1,26 @@
+{
+  "collection": "Spooky Action",
+  "repository": "SpookyAction",
+  "games": [
+    {
+      "kind": "trio",
+      "name": "Ghost Trio",
+      "slug": "ghost-trio",
+      "number": "01",
+      "tagline": "Three ghosts. Four cards. One stubborn miss.",
+      "crew": "Solo or 3 players + Keeper",
+      "time": "4\u20136 minutes",
+      "description": "A short GHZ classroom challenge: build a three-player answer plan, test four question cards, and compare it with an ideal quantum model."
+    },
+    {
+      "kind": "twins",
+      "name": "Ghost Twins",
+      "slug": "ghost-twins",
+      "number": "02",
+      "tagline": "Can a pair agree without sharing the question?",
+      "crew": "Solo or 2 players + Keeper",
+      "time": "4\u20137 minutes",
+      "description": "A short CHSH classroom challenge: plan local answers, compare four cases, and investigate the difference between a lucky sample and a quantum probability."
+    }
+  ]
+}
