@@ -1,6 +1,6 @@
 # Spooky Action · SpookyQubits
 
-Collection 04: short classroom activities about quantum correlations. Play **Ghost Trio first, then Ghost Twins**. Both games support Solo mode and private Pass & Play turns on one shared phone. They use the established bold red, blue, purple, and cream SpookyQubits theme.
+Collection 04: short classroom activities about quantum correlations. Play **Ghost Trio first, then Ghost Twins**. Both games support Solo mode and private Pass & Play turns on one shared phone. They use a softened red, blue, purple, and cream SpookyQubits palette.
 
 - **Ghost Trio** (`games/ghost-trio/`): three-player GHZ challenge. Build and lock a local response plan, audit all four question cases, and compare with the ideal GHZ joint distribution.
 - **Ghost Twins** (`games/ghost-twins/`): two-player CHSH challenge. Compare the four-case plan audit with sampled quantum-model outcomes, then use the classroom lab to explore fresh random batches and finite-sample variation.
