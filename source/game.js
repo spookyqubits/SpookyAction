@@ -1,7 +1,7 @@
 (() => {
   'use strict';
   const C=globalThis.SpookyActionCore,config=JSON.parse(document.getElementById('game-config').textContent),kind=config.kind,d=C.definition(kind);
-  const app=document.getElementById('app'),live=document.getElementById('live'),letters=['A','B','C'],colors=['#154c9c','#6c2f9e','#c0182a'];
+  const app=document.getElementById('app'),live=document.getElementById('live'),letters=['A','B','C'],colors=['#315f7b','#715184','#a6424d'];
   const storageKey='spooky-action:v1:'+kind,copy=x=>JSON.parse(JSON.stringify(x));
   const fresh=()=>({version:1,kind,mode:'solo',screen:'plan',phase:'classical',plan:Array.from({length:d.n},(_,i)=>kind==='trio'&&i===2?[1,1]:[0,0]),locked:null,deck:[],index:0,player:0,round:null,records:{classical:[],quantum:[]},batch:C.emptyStats(),quiz:null,panels:[]});
   let S=fresh(),storageOK=true;

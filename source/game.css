@@ -3,3 +3,15 @@
 @media(min-width:500px){.plan-grid{grid-template-columns:repeat(var(--players),minmax(0,1fr))}.plan-inputs{grid-template-columns:1fr}.plan-role .role-heading{flex-direction:column;gap:5px}.screen{padding:23px}.top-controls{padding-inline:23px}.game-footer{padding-inline:23px}}
 @media(max-width:360px){body{padding-inline:8px}.game-header{padding-inline:16px}.game-header h1{font-size:35px}.screen,.top-controls,.game-footer{padding-inline:13px}.collection-nav{font-size:11px;gap:10px}.btn{padding-inline:11px}.team{gap:7px}.player .input{font-size:12px}.player .ghost{width:35px;height:41px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+/* A softer Spooky Action palette, between the two existing collections. */
+:root{--paper:#f8f5ef;--ink:#293630;--muted:#58675f;--line:#d0d9d2;--red:#a3414b;--blue:#315f7b;--purple:#715184;--green:#2c7048}
+.game-shell{border-color:#9bac9f}
+.game-header{background:#e7beb9;color:var(--ink);border-bottom-color:#c99591}
+.game-header .eyebrow{color:#563b3c}
+.game-header h1 span{color:var(--red)}
+.btn.primary{box-shadow:0 3px 0 #813239}
+.btn[aria-pressed=true]{background:#e4efeb;border-color:#7c9f91;color:#245a53}
+.plan-role{border-color:#c5d4ca}
+.private-card{border-color:#b4c6bb}
+.plan-choice[aria-pressed=true]{background:#ecf2ed;color:var(--role);box-shadow:inset 0 0 0 1px var(--role)}
