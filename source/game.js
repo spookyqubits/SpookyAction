@@ -89,7 +89,19 @@
     render(focus);save();if(message)live.textContent=message;
   });
   app.addEventListener('toggle',event=>{if(event.target.matches?.('details[data-panel]')){S.panels=[...app.querySelectorAll('details[data-panel][open]')].map(x=>x.dataset.panel);}},true);
-  document.getElementById('science').innerHTML=`<p>${rule()}</p><p class="fine">A plan assigns one bit to each local question before play. The four-card challenge is an exhaustive audit of that fixed plan, not an independent random Bell experiment. The lab independently samples uniformly random questions on every new round.</p><p class="fine">${kind==='trio'?'GHZ model: (|000⟩ + |111⟩)/√2, with X or Y measurements. A bit of 0 denotes eigenvalue +1; 1 denotes −1. Allowed settings are XXX, XYY, YXY, YYX. All four outcomes with the required parity have probability 1/4.':'CHSH model: the Bell state (|00⟩ + |11⟩)/√2. Alice measures Z or X; Bob measures (Z + X)/√2 or (Z − X)/√2. Answers are eigenvalue bits. Winning answer pairs each have probability cos²(π/8)/2; losing pairs each have probability sin²(π/8)/2.'}</p><p class="fine">The model has a fair marginal for every individual player, whatever the other settings. Correlation does not create a controllable faster-than-light message.</p><p class="fine">Sources: ${kind==='trio'?'<a href="https://arxiv.org/abs/2107.06156" target="_blank" rel="noopener">Girish et al., GHZ game definition and bounds ↗</a>':'<a href="https://quantum.cloud.ibm.com/learning/en/courses/basics-of-quantum-information/entanglement-in-action/chsh-game" target="_blank" rel="noopener">IBM Quantum Learning: CHSH game ↗</a>'}.</p>`;
+  document.getElementById('science').innerHTML = `
+    <h3>How to play</h3>
+    <p>Pick each player's answers before you see the cards. Lock the plan, then try all four cards. In Pass &amp; Play, hand the phone to one player at a time. Use the answer you agreed on for the question you see.</p>
+    <p>${rule()}</p>
+    <h3>What changes with the ghost team?</h3>
+    <p>${kind==='trio'?'Try to fix the card your plan missed. Can you fix it without breaking another one? The ideal GHZ model can win all four cards.':'Compare your plan with the ideal entangled team over several batches in the classroom lab. Each batch gives you a better look at the difference than one four-card game.'}</p>
+    <p>Each player sees a random 0 or 1 on their own. When you compare the answers, a pattern appears across the team. To see it, the players have to share their results.</p>
+    <h3>For teachers</h3>
+    <p>Ask the class to predict which card their plan will miss. After they see all four, try the classroom lab. Each new round picks a random card from the same four, so some cards can turn up more than once. Compare the scores and talk about why a short run can be misleading.</p>
+    <details><summary>See the quantum model</summary>
+      <p>${kind==='trio'?'The GHZ state is (|000⟩ + |111⟩)/√2. Players use X or Y measurements. The allowed questions are XXX, XYY, YXY, and YYX. The four answer triples that meet the required parity each occur with probability 1/4.':'The model uses the Bell state (|00⟩ + |11⟩)/√2. Alice measures Z or X. Bob measures (Z + X)/√2 or (Z − X)/√2. Each winning answer pair has probability cos²(π/8)/2 and each losing pair has probability sin²(π/8)/2.'} A measurement result of +1 is recorded as 0 and −1 as 1.</p>
+      <p>${kind==='trio'?'<a href="https://arxiv.org/abs/2107.06156" target="_blank" rel="noopener">Girish et al., GHZ game rules and bounds</a>':'<a href="https://quantum.cloud.ibm.com/learning/en/courses/basics-of-quantum-information/entanglement-in-action/chsh-game" target="_blank" rel="noopener">IBM Quantum Learning’s CHSH game</a>'}</p>
+    </details>`;
   restore();render();if(!storageOK)document.getElementById('storage-note').textContent='Saving is off in this browser.';
   // A read-only inspection surface supports independent mathematical and UI checks.
   globalThis.SpookyActionGame={getState:()=>copy(S),config:copy(config)};
