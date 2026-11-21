@@ -6,10 +6,15 @@ import argparse
 import hashlib
 import json
 import shutil
+import sys
 import zipfile
 
 PROJECT = Path(__file__).resolve().parent
 SRC = PROJECT / ('src' if (PROJECT / 'src').is_dir() else 'source')
+HEADER_SOURCE = PROJECT.parent / 'Logo-Website' if SRC.name == 'src' else SRC
+sys.path.insert(0, str(HEADER_SOURCE))
+from site_header import document_page, not_found_page, with_header
+
 SOURCE_FILES = ['core.js', 'game.js', 'game.css', 'game.html', 'config.json',
                 'collection.html', 'collection.css', 'guide.html', 'ghost.svg']
 
@@ -71,7 +76,7 @@ def main():
         target.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(source, target)
         files.append(target)
-    write('index.html', fill((SRC / 'collection.html').read_text(), {'REPOSITORY': escape(repository)}))
+    write('index.html', with_header(fill((SRC / 'collection.html').read_text(), {'REPOSITORY': escape(repository)})))
     copy('action.css', SRC / 'collection.css')
     copy('assets/ghost.svg', SRC / 'ghost.svg')
     for game in config['games']:
@@ -85,7 +90,8 @@ def main():
         write('games/' + game['slug'] + '/guide.html', fill((SRC / 'guide.html').read_text(), guide_values(game, other)))
     write('.nojekyll', '')
     write('README.md', (PROJECT / 'README.md').read_text().replace('spookyqubits/Spooky-Action', 'spookyqubits/' + repository))
-    write('404.html', '<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Page not found · Spooky Action</title><body style="font-family:system-ui;background:#faf7f1;padding:10vw"><h1>This ghost wandered off.</h1><p><a href="https://spookyqubits.github.io/' + escape(repository) + '/">Return to Spooky Action →</a></p></body></html>')
+    write('404.html', not_found_page('Spooky Action', 'This ghost wandered off.',
+                                     'https://spookyqubits.github.io/' + repository + '/', 'Return to Spooky Action'))
     for name in SOURCE_FILES:
         if name == 'config.json':
             updated = dict(config, repository=repository)
@@ -93,6 +99,7 @@ def main():
         else:
             copy('source/' + name, SRC / name)
     copy('build.py', PROJECT / 'build.py')
+    copy('source/site_header.py', HEADER_SOURCE / 'site_header.py')
     def archive(target, members):
         target.parent.mkdir(parents=True, exist_ok=True)
         with zipfile.ZipFile(target, 'w', zipfile.ZIP_DEFLATED) as z:
@@ -101,6 +108,9 @@ def main():
     kit = dist / 'downloads/spooky-action-classroom-kit.zip'
     archive(kit, files)
     files.append(kit)
+    for game in config['games']:
+        guide = dist / 'games' / game['slug'] / 'guide.html'
+        guide.write_text(document_page(guide.read_text()), encoding='utf-8')
     archive(PROJECT / 'spooky-action-site.zip', files)
     manifest = [{'path': str(p.relative_to(dist)), 'sha256': hashlib.sha256(p.read_bytes()).hexdigest()} for p in files]
     (PROJECT / 'release-manifest.json').write_text(json.dumps(manifest, indent=2) + '\n')
