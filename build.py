@@ -13,7 +13,7 @@ PROJECT = Path(__file__).resolve().parent
 SRC = PROJECT / ('src' if (PROJECT / 'src').is_dir() else 'source')
 HEADER_SOURCE = PROJECT.parent / 'Logo-Website' if SRC.name == 'src' else SRC
 sys.path.insert(0, str(HEADER_SOURCE))
-from site_header import document_page, not_found_page, with_header
+from site_header import document_page, not_found_page, with_game_header, with_header
 
 SOURCE_FILES = ['core.js', 'game.js', 'game.css', 'game.html', 'config.json',
                 'collection.html', 'collection.css', 'guide.html', 'ghost.svg']
@@ -86,7 +86,8 @@ def main():
                        'CSS': (SRC / 'game.css').read_text(), 'CORE': (SRC / 'core.js').read_text(),
                        'APP': (SRC / 'game.js').read_text(),
                        'CONFIG': json.dumps({'kind': game['kind'], 'otherSlug': other['slug']}).replace('<', '\\u003c')})
-        write('games/' + game['slug'] + '/index.html', fill((SRC / 'game.html').read_text(), values))
+        playable = fill((SRC / 'game.html').read_text(), values)
+        write('games/' + game['slug'] + '/index.html', with_game_header(playable, 'Spooky Action', '../../index.html'))
         write('games/' + game['slug'] + '/guide.html', fill((SRC / 'guide.html').read_text(), guide_values(game, other)))
     write('.nojekyll', '')
     write('README.md', (PROJECT / 'README.md').read_text().replace('spookyqubits/Spooky-Action', 'spookyqubits/' + repository))

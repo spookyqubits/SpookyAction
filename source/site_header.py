@@ -1,9 +1,11 @@
 """Shared navigation for public SpookyQubits pages outside the games."""
 
 from html import escape
+import re
 
 
 PUBLIC_HOME = "https://spookyqubits.com/"
+FEEDBACK_URL = "https://docs.google.com/forms/d/e/1FAIpQLSdiWw4IEz4JX5UsgAScpl-tIXpiNDkJQhgm2joPpMu232BCnw/viewform"
 
 GHOST = '''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><path d="M18.5 18C19.5 10.5 25 5.5 31.5 5.5C39 5.5 44.5 11.5 45 19C45.2 22.5 45.5 25 47 26C50 27.5 55.5 25.5 58.5 27.5C62 30 59.5 35.5 55 36C51.5 36.5 48.5 36.5 46.5 38.5C43.5 45.5 36 51.5 26 53.5C19 55 12 55.5 8 54C5.5 53 7.5 50.5 10.5 48.5C12.5 47 13 45.5 13 44C14 40.5 14.3 37 14 34C11 34.2 6.5 33.5 4.2 30.5C2 27.5 3.5 23 8 22.5C12 22 16 21 18.5 18Z" fill="#fff8f4" stroke="#d3061c" stroke-width="2.5" stroke-linejoin="round"/><ellipse cx="29" cy="17.5" rx="2.6" ry="3.6" fill="#242622"/><ellipse cx="37.5" cy="19.5" rx="2.3" ry="3.3" fill="#242622"/><path d="M30.2 24.6Q33.4 25.8 36.6 24.9Q36 29.2 33 29Q30.6 28.6 30.2 24.6Z" fill="#242622"/></svg>'''
 
@@ -127,6 +129,79 @@ def document_page(page, home=PUBLIC_HOME):
     page = page.replace('body{', '.sq-document{')
     return with_header(page.replace('<body>', '<body class="sq-document-page">{{SITE_HEADER}}<div class="sq-document">', 1)
                        .replace('</body>', '</div></body>', 1), home)
+
+
+GAME_STYLE = """
+.sq-game-header {
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(4px, 1vw, 16px);
+  min-height: 60px;
+  margin: 0;
+  padding: 4px clamp(8px, 2.4vw, 28px);
+  border: 0;
+  border-bottom: 1px solid #dfded6;
+  background: #faf7f1;
+  color: #242622;
+  font: 700 14px/1.25 "Avenir Next", Avenir, "Segoe UI", system-ui, sans-serif;
+}
+.sq-game-header a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  min-height: 44px;
+  color: inherit;
+  text-decoration: none;
+}
+.sq-game-header a:focus-visible { outline: 3px solid #1363c4; outline-offset: 2px; }
+.sq-game-header a:hover { color: #a60000; }
+.sq-game-header .sq-game-back { justify-self: start; }
+.sq-game-header .sq-game-brand {
+  justify-self: center;
+  font-size: 21px;
+  font-weight: 850;
+  letter-spacing: -.045em;
+  white-space: nowrap;
+}
+.sq-game-brand svg { display: block; flex: none; width: 32px; height: 32px; }
+.sq-game-brand .sq-brand-red { color: #cc0000; }
+.sq-game-header .sq-game-feedback {
+  justify-self: end;
+  color: #a60000;
+  text-align: right;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+/* The launcher already shows this header above the embedded game. */
+.sq-game-header:target { display: none; }
+@media (max-width: 540px) {
+  .sq-game-header { min-height: 54px; font-size: 11px; }
+  .sq-game-header a { gap: 4px; }
+  .sq-game-header .sq-game-brand { font-size: 17px; }
+  .sq-game-brand svg { width: 24px; height: 24px; }
+}
+@media print { .sq-game-header { display: none; } }
+"""
+
+
+def with_game_header(page, collection, back_url, *, home=PUBLIC_HOME, back_id=''):
+    ghost = GHOST.replace('<svg ', '<svg aria-hidden="true" ', 1)
+    back_attribute = f' id="{escape(back_id)}"' if back_id else ''
+    header = f'''<header class="sq-game-header" id="sq-embedded-header">
+  <a class="sq-game-back"{back_attribute} href="{escape(back_url)}"><span aria-hidden="true">←</span><span>{escape(collection)}</span></a>
+  <a class="sq-game-brand" href="{escape(home)}" aria-label="SpookyQubits home">{ghost}<span>Spooky<span class="sq-brand-red">Qubits</span></span></a>
+  <a class="sq-game-feedback" href="{FEEDBACK_URL}" target="_blank" rel="noopener" aria-label="Give feedback (opens in a new tab)">Give feedback</a>
+</header>'''
+    if '{{GAME_HEADER}}' in page:
+        page = page.replace('{{GAME_HEADER}}', header, 1)
+    else:
+        page, count = re.subn(r'<body\b[^>]*>', lambda m: m[0] + '\n' + header, page, count=1, flags=re.I)
+        assert count == 1, 'Game page is missing a body'
+    assert '</head>' in page
+    return page.replace('</head>', '<style>' + GAME_STYLE + '</style>\n</head>', 1)
 
 
 def not_found_page(title, heading, return_url, return_text):
